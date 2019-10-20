@@ -1,0 +1,21 @@
+cc_prebuilt_library_shared {
+    name: "libwvhidl",
+    compile_multilib: "32",
+    vendor: true,
+    srcs: ["vendor/lib/libwvhidl.so"],
+}
+
+cc_prebuilt_binary {
+    name: "android.hardware.drm@1.1-service.widevine",
+    compile_multilib: "32",
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: ["vendor/bin/hw/android.hardware.drm@1.1-service.widevine"],
+
+    shared_libs: [
+        "libwvhidl",
+    ],
+
+    vintf_fragments: ["android.hardware.drm@1.1-service.widevine.xml"],
+    init_rc: ["vendor/etc/init/android.hardware.drm@1.1-service.widevine.rc"],
+}
