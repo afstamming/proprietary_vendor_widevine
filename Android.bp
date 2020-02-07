@@ -1,6 +1,9 @@
 cc_prebuilt_library_shared {
     name: "libwvhidl",
     vendor: true,
+    strip: {
+        none: true,
+    },
     srcs: ["vendor/lib64/libwvhidl.so"],
 }
 
