@@ -5,6 +5,27 @@ cc_prebuilt_library_shared {
         none: true,
     },
     srcs: ["vendor/lib64/libwvhidl.so"],
+
+    shared_libs: [
+        "android.hardware.drm@1.0",
+        "android.hardware.drm@1.1",
+        "android.hardware.drm@1.2",
+        "android.hidl.memory@1.0",
+        "libbase",
+        "libc",
+        "libc++",
+        "libdl",
+        "libhidlbase",
+        "libhidlmemory",
+        "liblog",
+        "libm",
+        //"libprotobuf-cpp-lite",
+        "libprotobuf-cpp-lite-vendorcompat",
+        "libutils",
+    ],
+    // Allow missing libhwbinder/libhidltransport,
+    // these are deprecated and can't be linked against
+    check_elf_files: false,
 }
 
 cc_prebuilt_binary {
@@ -14,8 +35,23 @@ cc_prebuilt_binary {
     srcs: ["vendor/bin/hw/android.hardware.drm@1.2-service.widevine"],
 
     shared_libs: [
+        "android.hardware.drm@1.0",
+        "android.hardware.drm@1.1",
+        "android.hardware.drm@1.2",
+        "libbase",
+        "libbinder",
+        "libc",
+        "libc++",
+        "libdl",
+        "libhidlbase",
+        "liblog",
+        "libm",
+        "libutils",
         "libwvhidl",
     ],
+    // Allow missing libhwbinder/libhidltransport,
+    // these are deprecated and can't be linked against
+    check_elf_files: false,
 
     vintf_fragments: ["android.hardware.drm@1.2-service.widevine.xml"],
     init_rc: ["vendor/etc/init/android.hardware.drm@1.2-service.widevine.rc"],
